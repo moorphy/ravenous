@@ -11,9 +11,9 @@ class SearchBar extends React.Component {
             location: '',
             sortBy: 'best_match'
         };
-        this.handleTermChange = this.bind.handleTermChange(this);
-        this.handleLocationChange = this.bind.handleLocationChange(this);
-        this.handleSearch = this.bind.handleSearch(this);
+        this.handleTermChange = this.handleTermChange.bind(this);
+        this.handleLocationChange = this.handleLocationChange.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
         this.sortByOptions = {
             'Best Match' : 'best_match',
             'Highest Rated' : 'highest_rated',
@@ -28,27 +28,27 @@ class SearchBar extends React.Component {
         }
     }
     handleSortByChange(sortByOption){
-        this.setState({ sortBy : sortByOption})
+        this.setState({sortBy: sortByOption});
     }
-    handleTermChange(e){
-        this.setState({
-            term : e.target.value
-        })
+    handleTermChange(event){
+        this.setState({term: event.target.value});
     }
-    handleLocationChange(e){
-        this.setState({
-            location : e.target.value
-        })
+    handleLocationChange(event){
+        this.setState({location: event.target.value});
     }
-    handleSearch(e) {
+    handleSearch(event) {
         this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
-        e.preventDefault();
+        event.preventDefault();
     }
     renderSortByOptions() {
         return Object.keys(this.sortByOptions).map(sortByOption => {
             let sortByOptionValue = this.sortByOptions[sortByOption];
             return (
-                <li key={sortByOptionValue} className={this.getSortByClass(sortByOptionValue)} onClick={this.handleSortByChange.bind(this.sortByOption)}></li>
+                <li className={this.getSortByClass[sortByOptionValue]}
+                key={sortByOptionValue} 
+                onClick={this.handleSortByChange.bind(this, sortByOption)}>
+                {sortByOption}
+                </li>
             )
         });
     }
