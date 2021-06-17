@@ -1,8 +1,6 @@
 import React from 'react';
 import './SearchBar.css';
 
-
-
 class SearchBar extends React.Component {
     constructor(props){
         super(props);
@@ -16,7 +14,7 @@ class SearchBar extends React.Component {
         this.handleSearch = this.handleSearch.bind(this);
         this.sortByOptions = {
             'Best Match' : 'best_match',
-            'Highest Rated' : 'highest_rated',
+            'Highest Rated' : 'rating',
             'Most Reviewed': 'review_count'
         }
     }
@@ -44,9 +42,9 @@ class SearchBar extends React.Component {
         return Object.keys(this.sortByOptions).map(sortByOption => {
             let sortByOptionValue = this.sortByOptions[sortByOption];
             return (
-                <li className={this.getSortByClass[sortByOptionValue]}
+                <li className={this.getSortByClass(sortByOptionValue)}
                 key={sortByOptionValue} 
-                onClick={this.handleSortByChange.bind(this, sortByOption)}>
+                onClick={this.handleSortByChange.bind(this, sortByOptionValue)}>
                 {sortByOption}
                 </li>
             )
@@ -65,10 +63,10 @@ class SearchBar extends React.Component {
                     <input placeholder="Where?" onChange={this.handleLocationChange}/>
                 </div>
                 <div className="SearchBar-submit">
-                    <a href="www.#.com" onClick={this.handleSearch}>Let's Go</a>
+                    <a href="http://#.com" onClick={this.handleSearch}>Let's Go</a>
                 </div>
             </div>
-        )
+        );
     }
 }
 export default SearchBar;
